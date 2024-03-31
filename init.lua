@@ -159,6 +159,15 @@ vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+-- Movement
+vim.keymap.set('n', 'n', 'h')
+vim.keymap.set('n', 'e', 'j')
+vim.keymap.set('n', 'u', 'k')
+vim.keymap.set('n', 'i', 'l')
+vim.keymap.set('n', 'l', 'i')
+vim.keymap.set('n', 'j', 'e')
+vim.keymap.set('n', 'm', 'n')
+vim.keymap.set('n', 'k', 'u')
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`

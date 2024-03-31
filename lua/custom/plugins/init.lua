@@ -3,7 +3,11 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+<<<<<<< HEAD
   {
+=======
+{
+>>>>>>> 5f81c91 (add config)
     'lukas-reineke/headlines.nvim',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     setup = function()
@@ -51,6 +55,7 @@ return {
       vim.cmd 'colorscheme doom-one'
     end,
   },
+<<<<<<< HEAD
   {
     'numToStr/Comment.nvim',
     opts = {
@@ -58,4 +63,6 @@ return {
     },
     lazy = false,
   },
+=======
+>>>>>>> 5f81c91 (add config)
 }

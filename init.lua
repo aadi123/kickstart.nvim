@@ -166,6 +166,9 @@ vim.keymap.set('n', 'j', 'e')
 vim.keymap.set('n', 'm', 'n')
 vim.keymap.set('n', 'k', 'u')
 
+-- Neotree
+vim.keymap.set('n', '<C-b>', '<Cmd>Neotree toggle<CR>')
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')

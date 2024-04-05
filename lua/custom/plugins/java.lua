@@ -17,10 +17,10 @@ return {
           'github:mason-org/mason-registry',
         },
       },
-    },
+    }
   },
-  config = function()
+  config = function ()
     require('java').setup()
-    require('lspconfig').jdtls.setup {}
-  end,
+    require('lspconfig').jdtls.setup({})
+  end
 }

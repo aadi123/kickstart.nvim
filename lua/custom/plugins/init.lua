@@ -3,7 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-{
+  {
     'lukas-reineke/headlines.nvim',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     setup = function()

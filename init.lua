@@ -156,15 +156,6 @@ vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
--- Movement
-vim.keymap.set('n', 'n', 'h')
-vim.keymap.set('n', 'e', 'j')
-vim.keymap.set('n', 'u', 'k')
-vim.keymap.set('n', 'i', 'l')
-vim.keymap.set('n', 'l', 'i')
-vim.keymap.set('n', 'j', 'e')
-vim.keymap.set('n', 'm', 'n')
-vim.keymap.set('n', 'k', 'u')
 
 -- Neotree
 vim.keymap.set('n', '<C-b>', '<Cmd>Neotree toggle<CR>')
@@ -290,7 +281,6 @@ require('lazy').setup({
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
-
       -- Document existing key chains
       require('which-key').register {
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
@@ -300,6 +290,45 @@ require('lazy').setup({
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
         ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+        ['<leader>g'] = {
+          name = 'Debug',
+          s = {
+            name = 'Step',
+            c = { "<cmd>lua require('dap').continue()<CR>", 'Continue' },
+            v = { "<cmd>lua require('dap').step_over()<CR>", 'Step Over' },
+            i = { "<cmd>lua require('dap').step_into()<CR>", 'Step Into' },
+            o = { "<cmd>lua require('dap').step_out()<CR>", 'Step Out' },
+          },
+          h = {
+            name = 'Hover',
+            h = { "<cmd>lua require('dap.ui.variables').hover()<CR>", 'Hover' },
+            v = { "<cmd>lua require('dap.ui.variables').visual_hover()<CR>", 'Visual Hover' },
+          },
+          u = {
+            name = 'UI',
+            h = { "<cmd>lua require('dap.ui.widgets').hover()<CR>", 'Hover' },
+            f = { "local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>", 'Float' },
+          },
+          r = {
+            name = 'Repl',
+            o = { "<cmd>lua require('dap').repl.open()<CR>", 'Open' },
+            l = { "<cmd>lua require('dap').repl.run_last()<CR>", 'Run Last' },
+          },
+          b = {
+            name = 'Breakpoints',
+            c = {
+              "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+              'Breakpoint Condition',
+            },
+            m = {
+              "<cmd>lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') })<CR>",
+              'Log Point Message',
+            },
+            t = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", 'Create' },
+          },
+          c = { "<cmd>lua require('dap').scopes()<CR>", 'Scopes' },
+          i = { "<cmd>lua require('dap').toggle()<CR>", 'Toggle' },
+        },
       }
       -- visual mode
       require('which-key').register({
@@ -928,6 +957,16 @@ require('lazy').setup({
     },
   },
 })
+
+-- Movement
+vim.keymap.set({ 'n', 'v' }, 'n', '<left>')
+vim.keymap.set({ 'n', 'v' }, 'e', '<down>')
+vim.keymap.set({ 'n', 'v' }, 'u', '<up>')
+vim.keymap.set({ 'n', 'v' }, 'i', '<right>')
+vim.keymap.set('n', 'l', 'i')
+vim.keymap.set('n', 'j', 'e')
+vim.keymap.set('n', 'm', 'n')
+vim.keymap.set('n', 'k', 'u')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

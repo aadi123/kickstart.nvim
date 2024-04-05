@@ -159,15 +159,6 @@ vim.opt.scrolloff = 10
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
--- Movement
-vim.keymap.set('n', 'n', 'h')
-vim.keymap.set('n', 'e', 'j')
-vim.keymap.set('n', 'u', 'k')
-vim.keymap.set('n', 'i', 'l')
-vim.keymap.set('n', 'l', 'i')
-vim.keymap.set('n', 'j', 'e')
-vim.keymap.set('n', 'm', 'n')
-vim.keymap.set('n', 'k', 'u')
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -369,6 +360,51 @@ require('which-key').add {
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
+    config = function() -- This is the function that runs, AFTER loading
+      require('which-key').setup()
+      -- Document existing key chains
+      require('which-key').register {
+                ['<leader>g'] = {
+          name = 'Debug',
+          s = {
+            name = 'Step',
+            c = { "<cmd>lua require('dap').continue()<CR>", 'Continue' },
+            v = { "<cmd>lua require('dap').step_over()<CR>", 'Step Over' },
+            i = { "<cmd>lua require('dap').step_into()<CR>", 'Step Into' },
+            o = { "<cmd>lua require('dap').step_out()<CR>", 'Step Out' },
+          },
+          h = {
+            name = 'Hover',
+            h = { "<cmd>lua require('dap.ui.variables').hover()<CR>", 'Hover' },
+            v = { "<cmd>lua require('dap.ui.variables').visual_hover()<CR>", 'Visual Hover' },
+          },
+          u = {
+            name = 'UI',
+            h = { "<cmd>lua require('dap.ui.widgets').hover()<CR>", 'Hover' },
+            f = { "local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>", 'Float' },
+          },
+          r = {
+            name = 'Repl',
+            o = { "<cmd>lua require('dap').repl.open()<CR>", 'Open' },
+            l = { "<cmd>lua require('dap').repl.run_last()<CR>", 'Run Last' },
+          },
+          b = {
+            name = 'Breakpoints',
+            c = {
+              "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+              'Breakpoint Condition',
+            },
+            m = {
+              "<cmd>lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') })<CR>",
+              'Log Point Message',
+            },
+            t = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", 'Create' },
+          },
+          c = { "<cmd>lua require('dap').scopes()<CR>", 'Scopes' },
+          i = { "<cmd>lua require('dap').toggle()<CR>", 'Toggle' },
+        },
+      }
+    end,
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -1023,6 +1059,16 @@ require('which-key').add {
     },
   },
 })
+-- Movement
+vim.keymap.set({ 'n', 'v' }, 'n', '<left>')
+vim.keymap.set({ 'n', 'v' }, 'e', '<down>')
+vim.keymap.set({ 'n', 'v' }, 'u', '<up>')
+vim.keymap.set({ 'n', 'v' }, 'i', '<right>')
+vim.keymap.set('n', 'l', 'i')
+vim.keymap.set('n', 'j', 'e')
+vim.keymap.set('n', 'm', 'n')
+vim.keymap.set('n', 'k', 'u')
+
 -- Movement
 vim.keymap.set({ 'n', 'v' }, 'n', '<left>')
 vim.keymap.set({ 'n', 'v' }, 'e', '<down>')

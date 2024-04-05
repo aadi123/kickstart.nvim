@@ -5,7 +5,10 @@ return {
     'nvim-java/nvim-java-core',
     'nvim-java/nvim-java-test',
     'nvim-java/nvim-java-dap',
+<<<<<<< HEAD
     'nvim-java/nvim-java-refactor',
+=======
+>>>>>>> 530923e (visual mode works)
     'MunifTanjim/nui.nvim',
     'neovim/nvim-lspconfig',
     'mfussenegger/nvim-dap',

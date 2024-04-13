@@ -51,4 +51,11 @@ return {
       vim.cmd 'colorscheme doom-one'
     end,
   },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  },
 }

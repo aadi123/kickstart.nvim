@@ -320,17 +320,6 @@ require('lazy').setup({
       }
 
       -- Document existing key chains
-<<<<<<< HEAD
-      require('which-key').add {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>g', group = 'Debug', mode = {s = {
-=======
       require('which-key').register {
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
@@ -342,7 +331,6 @@ require('lazy').setup({
         ['<leader>g'] = {
           name = 'Debug',
           s = {
->>>>>>> c8e98da (visual mode works)
             name = 'Step',
             c = { "<cmd>lua require('dap').continue()<CR>", 'Continue' },
             v = { "<cmd>lua require('dap').step_over()<CR>", 'Step Over' },
@@ -379,16 +367,47 @@ require('lazy').setup({
           c = { "<cmd>lua require('dap').scopes()<CR>", 'Scopes' },
           i = { "<cmd>lua require('dap').toggle()<CR>", 'Toggle' },
         },
-<<<<<<< HEAD
-                }
-              }
-=======
+      require('which-key').add {
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>c_', hidden = true },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>d_', hidden = true },
+        { '<leader>g', group = 'Debug' },
+        { '<leader>gb', group = 'Breakpoints' },
+        { '<leader>gbc', "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", desc = 'Breakpoint Condition' },
+        { '<leader>gbm', "<cmd>lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') })<CR>", desc = 'Log Point Message' },
+        { '<leader>gbt', "<cmd>lua require('dap').toggle_breakpoint()<CR>", desc = 'Create' },
+        { '<leader>gc', "<cmd>lua require('dap').scopes()<CR>", desc = 'Scopes' },
+        { '<leader>gh', group = 'Hover' },
+        { '<leader>ghh', "<cmd>lua require('dap.ui.variables').hover()<CR>", desc = 'Hover' },
+        { '<leader>ghv', "<cmd>lua require('dap.ui.variables').visual_hover()<CR>", desc = 'Visual Hover' },
+        { '<leader>gi', "<cmd>lua require('dap').toggle()<CR>", desc = 'Toggle' },
+        { '<leader>gr', group = 'Repl' },
+        { '<leader>grl', "<cmd>lua require('dap').repl.run_last()<CR>", desc = 'Run Last' },
+        { '<leader>gro', "<cmd>lua require('dap').repl.open()<CR>", desc = 'Open' },
+        { '<leader>gs', group = 'Step' },
+        { '<leader>gsc', "<cmd>lua require('dap').continue()<CR>", desc = 'Continue' },
+        { '<leader>gsi', "<cmd>lua require('dap').step_into()<CR>", desc = 'Step Into' },
+        { '<leader>gso', "<cmd>lua require('dap').step_out()<CR>", desc = 'Step Out' },
+        { '<leader>gsv', "<cmd>lua require('dap').step_over()<CR>", desc = 'Step Over' },
+        { '<leader>gu', group = 'UI' },
+        { '<leader>guf', "local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>", desc = 'Float' },
+        { '<leader>guh', "<cmd>lua require('dap.ui.widgets').hover()<CR>", desc = 'Hover' },
+        { '<leader>h', group = 'Git [H]unk' },
+        { '<leader>h_', hidden = true },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>r_', hidden = true },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>s_', hidden = true },
+        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t_', hidden = true },
+        { '<leader>w', group = '[W]orkspace' },
+        { '<leader>w_', hidden = true },
       }
       -- visual mode
-      require('which-key').register({
-        ['<leader>h'] = { 'Git [H]unk' },
+      require('which-key').add({
+        { '<leader>h', group = 'Git [H]unk' },
       }, { mode = 'v' })
->>>>>>> c8e98da (visual mode works)
     end,
   },
 

@@ -358,52 +358,31 @@ require('which-key').add {
         { '<leader>w', group = '[W]orkspace' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>g', group = 'Debug' },
+        { '<leader>gb', group = 'Breakpoints' },
+        { '<leader>gbc', "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", desc = 'Breakpoint Condition' },
+        { '<leader>gbm', "<cmd>lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') })<CR>", desc = 'Log Point Message' },
+        { '<leader>gbt', "<cmd>lua require('dap').toggle_breakpoint()<CR>", desc = 'Create' },
+        { '<leader>gc', "<cmd>lua require('dap').scopes()<CR>", desc = 'Scopes' },
+        { '<leader>gh', group = 'Hover' },
+        { '<leader>ghh', "<cmd>lua require('dap.ui.variables').hover()<CR>", desc = 'Hover' },
+        { '<leader>ghv', "<cmd>lua require('dap.ui.variables').visual_hover()<CR>", desc = 'Visual Hover' },
+        { '<leader>gi', "<cmd>lua require('dap').toggle()<CR>", desc = 'Toggle' },
+        { '<leader>gr', group = 'Repl' },
+        { '<leader>grl', "<cmd>lua require('dap').repl.run_last()<CR>", desc = 'Run Last' },
+        { '<leader>gro', "<cmd>lua require('dap').repl.open()<CR>", desc = 'Open' },
+        { '<leader>gs', group = 'Step' },
+        { '<leader>gsc', "<cmd>lua require('dap').continue()<CR>", desc = 'Continue' },
+        { '<leader>gsi', "<cmd>lua require('dap').step_into()<CR>", desc = 'Step Into' },
+        { '<leader>gso', "<cmd>lua require('dap').step_out()<CR>", desc = 'Step Out' },
+        { '<leader>gsv', "<cmd>lua require('dap').step_over()<CR>", desc = 'Step Over' },
+        { '<leader>gu', group = 'UI' },
+        { '<leader>guf', "local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>", desc = 'Float' },
+        { '<leader>guh', "<cmd>lua require('dap.ui.widgets').hover()<CR>", desc = 'Hover' },
       },
     },
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
-      -- Document existing key chains
-      require('which-key').register {
-                ['<leader>g'] = {
-          name = 'Debug',
-          s = {
-            name = 'Step',
-            c = { "<cmd>lua require('dap').continue()<CR>", 'Continue' },
-            v = { "<cmd>lua require('dap').step_over()<CR>", 'Step Over' },
-            i = { "<cmd>lua require('dap').step_into()<CR>", 'Step Into' },
-            o = { "<cmd>lua require('dap').step_out()<CR>", 'Step Out' },
-          },
-          h = {
-            name = 'Hover',
-            h = { "<cmd>lua require('dap.ui.variables').hover()<CR>", 'Hover' },
-            v = { "<cmd>lua require('dap.ui.variables').visual_hover()<CR>", 'Visual Hover' },
-          },
-          u = {
-            name = 'UI',
-            h = { "<cmd>lua require('dap.ui.widgets').hover()<CR>", 'Hover' },
-            f = { "local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>", 'Float' },
-          },
-          r = {
-            name = 'Repl',
-            o = { "<cmd>lua require('dap').repl.open()<CR>", 'Open' },
-            l = { "<cmd>lua require('dap').repl.run_last()<CR>", 'Run Last' },
-          },
-          b = {
-            name = 'Breakpoints',
-            c = {
-              "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-              'Breakpoint Condition',
-            },
-            m = {
-              "<cmd>lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') })<CR>",
-              'Log Point Message',
-            },
-            t = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", 'Create' },
-          },
-          c = { "<cmd>lua require('dap').scopes()<CR>", 'Scopes' },
-          i = { "<cmd>lua require('dap').toggle()<CR>", 'Toggle' },
-        },
-      }
     end,
   },
 

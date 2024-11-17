@@ -346,7 +346,7 @@ require('lazy').setup({
         { '<leader>gu', group = 'UI' },
         { '<leader>guf', "local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>", desc = 'Float' },
         { '<leader>guh', "<cmd>lua require('dap.ui.widgets').hover()<CR>", desc = 'Hover' },
-    }
+      }
     end,
   },
 

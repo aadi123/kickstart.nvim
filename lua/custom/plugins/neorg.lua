@@ -1,9 +1,4 @@
-return {
-  {
-    'vhyrro/luarocks.nvim',
-    priority = 1000,
-    config = true,
-  },
+return {  
   {
     'nvim-neorg/neorg',
     dependencies = { 'luarocks.nvim' },
